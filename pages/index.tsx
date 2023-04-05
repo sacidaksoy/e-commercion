@@ -9,6 +9,7 @@ import axios from 'axios'
 import { GetServerSideProps } from 'next'
 import { Products } from '@/types/products'
 import LatestProducts from '@/components/LatestProducts'
+import ShopOffers from '@/components/ShopOffers'
 
 type Props = {
   data: Products[];
@@ -31,7 +32,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
 };
 
 export default function Home({ data }: Props) {
-  console.log("data", data);
+  // console.log("data", data);
   return (
     <>
       <Head>
@@ -44,6 +45,10 @@ export default function Home({ data }: Props) {
       <Hero />
       <FeaturedProducts featuredProducts={data} />
       <LatestProducts latestProducts={data} />
+      <ShopOffers
+        sectionTitle="What's Hekto Offer?"
+        classes="font-JosefinSans text-center text-[#1A0B5B] text-[42px] font-bold mb-20"
+      />
     </>
   )
 }
