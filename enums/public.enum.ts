@@ -11,8 +11,8 @@ export enum ECartSituation {
 }
 
 export enum ELatestSection {
-  NewArrival = "New Arrival",
-  BestSeller = "Best Seller",
-  Featured = "Featured",
-  SpecialOffer = "Special Offer"
+  "electronics" = "electronics",
+  "jewelery" = "jewelery",
+  "men's clothing" = "men's clothing",
+  "women's clothing" = "women's clothing"
 }

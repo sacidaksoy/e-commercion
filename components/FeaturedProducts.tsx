@@ -1,7 +1,6 @@
 import React, { FC, ReactElement, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
-import axios from 'axios'
 import "swiper/css";
 import "swiper/css/pagination";
 import { Products } from "@/types/products";

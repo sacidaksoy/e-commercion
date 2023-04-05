@@ -8,6 +8,7 @@ import FeaturedProducts from '@/components/FeaturedProducts'
 import axios from 'axios'
 import { GetServerSideProps } from 'next'
 import { Products } from '@/types/products'
+import LatestProducts from '@/components/LatestProducts'
 
 type Props = {
   data: Products[];
@@ -41,7 +42,8 @@ export default function Home({ data }: Props) {
       </Head>
       <Navbar />
       <Hero />
-      <FeaturedProducts featuredProducts={data}/>
+      <FeaturedProducts featuredProducts={data} />
+      <LatestProducts latestProducts={data} />
     </>
   )
 }
