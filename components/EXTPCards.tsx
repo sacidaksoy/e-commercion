@@ -1,9 +1,9 @@
-import { FCTypes } from "@/types/types.public";
+import { IFCTypes } from "@/types/types.public";
 import Image from "next/image";
 import Link from "next/link";
 import React, { FC, ReactElement } from "react";
 
-const EXTPCards: FC<FCTypes> = (props): ReactElement => {
+const EXTPCards: FC<IFCTypes> = (props): ReactElement => {
   const { data } = props;
 
   return (

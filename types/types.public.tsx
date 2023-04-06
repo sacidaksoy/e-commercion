@@ -2,6 +2,10 @@ import { StaticImageData } from "next/image"
 import { Products } from "./products"
 
 export type FCTypes = {
+  products: Products[]
+}
+
+export type IFCTypes = {
   data: Products
 }
 
