@@ -13,9 +13,6 @@ const LatestProducts: FC<Props> = ({ latestProducts }): ReactElement | null => {
   );
   const [filteredLatestProducts, setfilteredLatestProducts] = useState<Products[]>([]);
 
-  console.log("latestProducts", latestProducts);
-  console.log("section", section);
-  console.log("filteredLatestProducts", filteredLatestProducts);
 
   useEffect(() => {
     const products: Products[] = latestProducts.filter((product: Products) => product.category === section);
