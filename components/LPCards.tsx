@@ -24,6 +24,7 @@ const LPCards: FC<Props> = ({data}) => {
           width={176}
           height={176}
           alt={data.title}
+          style={{mixBlendMode: 'darken'}}
         />
         <div className="LPCard-hover-icons">
           <HiOutlineShoppingCart

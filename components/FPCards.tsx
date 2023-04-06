@@ -24,6 +24,7 @@ const FPCards: FC<Props> = ({ data }): ReactElement => {
           width={176}
           height={176}
           alt={data?.title}
+          style={{mixBlendMode: 'darken'}}
         />
         <div className="FPCard-hover-icons">
           <HiOutlineShoppingCart
