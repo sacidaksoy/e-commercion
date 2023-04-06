@@ -10,6 +10,7 @@ import { GetServerSideProps } from 'next'
 import { Products } from '@/types/products'
 import LatestProducts from '@/components/LatestProducts'
 import ShopOffers from '@/components/ShopOffers'
+import UniqueFurniture from '@/components/UniqueProduct'
 
 type Props = {
   data: Products[];
@@ -49,6 +50,7 @@ export default function Home({ data }: Props) {
         sectionTitle="What's Hekto Offer?"
         classes="font-JosefinSans text-center text-[#1A0B5B] text-[42px] font-bold mb-20"
       />
+      <UniqueFurniture products={data} />
     </>
   )
 }
