@@ -13,8 +13,6 @@ const UniqueFurniture: FC<Props> = ({ products }) => {
 
   const uniqueDescription = uniqueFurniture?.description.split(/[,.]\s*/);
 
-  console.log("uniqueFurniture", uniqueFurniture);
-
   if (uniqueFurniture === undefined) return null;
   return (
     <div className="bg-[#f1f0ff] pb-7 lg:pb-0">
