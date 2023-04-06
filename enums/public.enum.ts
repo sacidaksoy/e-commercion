@@ -1,7 +1,8 @@
 export enum discountSection {
-  WoodChair = "Wood Chair",
-  PlasticChair = "Plastic Chair",
-  SofaCollection = "Sofa Collection"
+  "electronics" = "electronics",
+  "jewelery" = "jewelery",
+  "men's clothing" = "men's clothing",
+  "women's clothing" = "women's clothing"
 }
 
 export enum ECartSituation {
