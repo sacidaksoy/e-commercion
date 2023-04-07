@@ -73,11 +73,12 @@ const DiscountItems: FC<FCTypes> = ({ products }) => {
         <div className="w-full relative">
           <div className="absolute w-[95%] h-[95%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#fcecf1] z-10 rounded-full" />
           <Image
-            className="relative z-20"
+            className="relative z-20 py-7"
             src={discountItem?.image}
             alt={discountItem.title}
             width={300}
             height={300}
+            style={{mixBlendMode: 'darken', margin: '0 auto'}}
           />
         </div>
       </div>
