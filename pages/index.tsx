@@ -14,6 +14,9 @@ import UniqueFurniture from '@/components/UniqueProduct'
 import TrendingProducts from '@/components/TrendingProducts'
 import DiscountItems from '@/components/DiscountItems'
 import TopCategories from '@/components/TopCategories'
+import UpdateBanner from '@/components/UpdateBanner'
+import Footer from '@/components/Footer'
+import Logos from '@/components/Logos'
 
 export type Props = {
   data: Products[];
@@ -57,6 +60,9 @@ export default function Home({ data }: Props) {
       <TrendingProducts products={data} />
       <DiscountItems products={data} />
       <TopCategories products={data} />
+      <UpdateBanner />
+      <Logos />
+      <Footer />
     </>
   )
 }
