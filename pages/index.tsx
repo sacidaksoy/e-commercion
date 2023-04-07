@@ -13,6 +13,7 @@ import ShopOffers from '@/components/ShopOffers'
 import UniqueFurniture from '@/components/UniqueProduct'
 import TrendingProducts from '@/components/TrendingProducts'
 import DiscountItems from '@/components/DiscountItems'
+import TopCategories from '@/components/TopCategories'
 
 export type Props = {
   data: Products[];
@@ -55,6 +56,7 @@ export default function Home({ data }: Props) {
       <UniqueFurniture products={data} />
       <TrendingProducts products={data} />
       <DiscountItems products={data} />
+      <TopCategories products={data} />
     </>
   )
 }
