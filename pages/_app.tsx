@@ -4,13 +4,18 @@ import '@/styles/globals.css'
 import '@/styles/swipers.css'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
+import { store } from '../store'
+import { persistor } from '../store'
+import { PersistGate } from 'redux-persist/integration/react'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div>
-      <Navbar />
-      <Component {...pageProps} />
-      <Footer />
-    </div>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Navbar />
+        <Component {...pageProps} />
+        <Footer />
+      </PersistGate>
+    </Provider>
   )
 }
