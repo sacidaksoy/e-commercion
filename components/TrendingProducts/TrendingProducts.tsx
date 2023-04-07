@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import watch from "../images/watch-banner.png";
-import buff from "../images/buff-banner.png";
+import watch from "../../images/watch-banner.png";
+import buff from "../../images/buff-banner.png";
 import { Products } from "@/types/products";
 import CCTPCards from "./CCTPCards";
 import EXTPCards from "./EXTPCards";
