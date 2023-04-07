@@ -84,7 +84,7 @@ const Navbar: FC = (): ReactElement => {
                 <Link href="/contacts" className={router.pathname === '/contacts' ? 'active-nav-link' : ''}>Contact Us</Link>
               </li>
               <li>
-                <Link href="/about-us" className={router.pathname === '/about-us' ? 'active-nav-link' : ''}>About Us</Link>
+                <Link href="/about" className={router.pathname === '/about' ? 'active-nav-link' : ''}>About Us</Link>
               </li>
             </ul>
             <div className="relative flex items-center md:col-span-3 col-span-12">
