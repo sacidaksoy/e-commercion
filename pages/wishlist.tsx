@@ -36,6 +36,13 @@ const Wishlist = () => {
         <h2 className="font-JosefinSans text-4xl mt-10 font-bold text-navy-blue">
           Your Wishlist Are Empty!
         </h2>
+        <Link href={'/products'}>
+          <button
+            className="font-JosefinSans text-base rounded-sm bg-pink-cc px-6 py-2 text-white mt-10"
+          >
+            See Products
+          </button>
+        </Link>
       </motion.div>
     );
   return (
