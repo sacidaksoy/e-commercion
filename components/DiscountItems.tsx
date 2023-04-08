@@ -64,7 +64,7 @@ const DiscountItems: FC<FCTypes> = ({ products }) => {
             ))}
           </div>
           <Link
-            href={`product-details/${discountItem.id}`}
+            href={`products/${discountItem.id}`}
             className="px-14 py-3 bg-pink-cc w-fit font-JosefinSans text-[17px] text-white rounded-sm mt-7 cursor-pointer"
           >
             Shop Now

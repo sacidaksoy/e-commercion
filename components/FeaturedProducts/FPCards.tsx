@@ -8,13 +8,16 @@ import { FaHeart } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 import { Products } from "@/types/products";
+import { useAppDispatch, useAppSelector } from "@/store/hook";
+import { cartActions, wishListActions } from "@/store/slices";
 
 interface Props {
   data: Products;
 }
 
 const FPCards: FC<Props> = ({ data }): ReactElement => {
-
+  const { wishlistProducts } = useAppSelector((state) => state.wishlist);
+  const dispatch = useAppDispatch();
   return (
     <div className="w-[95%] group overflow-hidden">
       <div className="w-full h-[236px] flex items-center justify-center FPCard-hover-image relative">
@@ -24,36 +27,37 @@ const FPCards: FC<Props> = ({ data }): ReactElement => {
           width={176}
           height={176}
           alt={data?.title}
-          style={{mixBlendMode: 'darken'}}
+          style={{ mixBlendMode: 'darken' }}
         />
         <div className="FPCard-hover-icons">
           <HiOutlineShoppingCart
             className="FPCard-hover-icon cursor-pointer"
+            onClick={() => dispatch(cartActions.addToCart(data))}
           />
-          {/* {wishlist.includes(data.id) ? (
+          {wishlistProducts?.filter((item) => item.id === data.id).length > 0 ? (
             <FaHeart
               onClick={() =>
-                dispatch(removeFromWishlist({ productID: data.id }))
+                dispatch(wishListActions.removeFromWishList(data))
               }
               className="FPCard-hover-icon cursor-pointer"
             />
           ) : (
             <FiHeart
-              onClick={() => dispatch(addToWishlist({ productID: data.id }))}
+              onClick={() => dispatch(wishListActions.addToWishList(data))}
               className="FPCard-hover-icon cursor-pointer"
             />
-          )} */}
-          <Link href={`product-details/${data.id}`}>
+          )}
+          <Link href={`products/${data.id}`}>
             <SlMagnifierAdd className="FPCard-hover-icon" />
           </Link>
         </div>
-        <Link href={`product-details/${data.id}`} className="FPCard-hover-button">
+        <Link href={`products/${data.id}`} className="FPCard-hover-button">
           View Details
         </Link>
       </div>
       <div className="flex items-center flex-col p-4 text-center FPCard-hover-body">
         <Link
-          href={`product-details/${data.id}`}
+          href={`products/${data.id}`}
           className="flex items-center justify-center"
         >
           <h5 className="line-clamp-1 text-pink-cc text-[18px] font-bold FPCard-hover-text">

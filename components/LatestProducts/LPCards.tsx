@@ -1,5 +1,7 @@
 // Featured Products Card
 
+import { useAppDispatch, useAppSelector } from "@/store/hook";
+import { cartActions, wishListActions } from "@/store/slices";
 import { Products } from "@/types/products";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,6 +16,8 @@ interface Props {
 }
 
 const LPCards: FC<Props> = ({data}) => {
+  const { wishlistProducts } = useAppSelector((state) => state.wishlist);
+  const dispatch = useAppDispatch();
 
   return (
     <div className="flex flex-col group">
@@ -29,27 +33,28 @@ const LPCards: FC<Props> = ({data}) => {
         <div className="LPCard-hover-icons">
           <HiOutlineShoppingCart
             className="LPCard-hover-icon cursor-pointer"
+            onClick={() => dispatch(cartActions.addToCart(data))}
           />
-          {/* {wishlist.includes(data.id) ? (
+            {wishlistProducts?.filter((item) => item.id === data.id).length > 0 ? (
             <FaHeart
               onClick={() =>
-                dispatch(removeFromWishlist({ productID: data.id }))
+                dispatch(wishListActions.removeFromWishList(data))
               }
-              className="LPCard-hover-icon cursor-pointer"
+              className="FPCard-hover-icon cursor-pointer"
             />
           ) : (
             <FiHeart
-              onClick={() => dispatch(addToWishlist({ productID: data.id }))}
-              className="LPCard-hover-icon cursor-pointer"
+              onClick={() => dispatch(wishListActions.addToWishList(data))}
+              className="FPCard-hover-icon cursor-pointer"
             />
-          )} */}
-          <Link href={`product-details/${data.id}`}>
+          )}
+          <Link href={`products/${data.id}`}>
             <SlMagnifierAdd className="FPCard-hover-icon" />
           </Link>
         </div>
       </div>
       <div className="w-full flex items-center justify-between mt-3">
-        <Link href={`product-details/${data.id}`} className="flex items-center">
+        <Link href={`products/${data.id}`} className="flex items-center">
           <h5 className="line-clamp-1 w-10/12 font-JosefinSans text-navy-blue">
             {data.title}
           </h5>

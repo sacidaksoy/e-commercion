@@ -19,7 +19,7 @@ const EXTPCards: FC<IFCTypes> = (props): ReactElement => {
         />
       </div>
       <div className="flex flex-col ml-2 justify-center h-full">
-        <Link href={`product-details/${data.id}`}>
+        <Link href={`products/${data.id}`}>
           <h5 className="line-clamp-1 leading-4 text-base mb-2 w-12/12 text-navy-blue font-semibold">
             {data.title}
           </h5>

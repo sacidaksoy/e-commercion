@@ -3,12 +3,15 @@ import BGImg from "../images/ellipse-unique-furniture.png";
 import { Products } from "@/types/products";
 import Image from "next/image";
 import Link from "next/link";
+import { cartActions } from "@/store/slices";
+import { useAppDispatch } from "@/store/hook";
 
 type Props = {
   products: Products[];
 }
 
 const UniqueFurniture: FC<Props> = ({ products }) => {
+  const dispatch = useAppDispatch();
   const uniqueFurniture: Products | undefined = products.find((product: Products) => product.id === 1);
 
   const uniqueDescription = uniqueFurniture?.description.split(/[,.]\s*/);
@@ -53,11 +56,12 @@ const UniqueFurniture: FC<Props> = ({ products }) => {
             <div className="mt-4 flex items-center">
               <button
                 className="font-JosefinSans text-base rounded-sm bg-pink-cc px-6 py-2 text-white"
+                onClick={() => dispatch(cartActions.addToCart(uniqueFurniture))}
               >
                 Add To Cart
               </button>
               <div className="flex flex-col ml-4">
-                <Link href={`/product-details/${uniqueFurniture.id}`}>
+                <Link href={`/products/${uniqueFurniture.id}`}>
                   <p className="text-[14px] font-semibold font-JosefinSans text-navy-blue leading-4">
                     {uniqueFurniture.title}
                   </p>

@@ -20,7 +20,7 @@ const CCTPCards: FC<IFCTypes> = (props): ReactElement => {
       </div>
       <div className="flex flex-col justify-center items-center mt-2">
         <Link
-          href={`product-details/${data.id}`}
+          href={`products/${data.id}`}
           className="flex items-center justify-center"
         >
           <h5 className="line-clamp-1 font-Lato text-base text-center font-bold text-navy-blue w-11/12 mb-2">
