@@ -8,5 +8,20 @@ export interface Products {
     rate: number,
     count: number
   },
-  image: string
+  image: string,
+  quantity: number
+}
+
+export interface IListSliceInitialState {
+  loading: false | true;
+  products?: Products[],
+  error: any,
+  listedProduct?: Products[],
+}
+
+export interface CartItem {
+  id: number;
+  title: string;
+  price: number;
+  quantity: number;
 }
