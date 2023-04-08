@@ -1,5 +1,6 @@
 import { Products } from '@/types/products';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 interface CartState {
   cartItems: Products[];
@@ -21,6 +22,7 @@ const cartSlice = createSlice({
       } else {
         state.cartItems.push({ ...action.payload, quantity: 1 });
       }
+      toast.success('Added to cart!');
     },
     removeFromCart: (state, action: PayloadAction<number>) => {
       const id = action.payload;
@@ -33,6 +35,7 @@ const cartSlice = createSlice({
           existingItem.quantity--;
         }
       }
+      toast.error('Removed from cart!')
     },
   },
 });
