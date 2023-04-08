@@ -18,10 +18,3 @@ export interface IListSliceInitialState {
   error: any,
   listedProduct?: Products[],
 }
-
-export interface CartItem {
-  id: number;
-  title: string;
-  price: number;
-  quantity: number;
-}
