@@ -46,7 +46,7 @@ const ProductsList: FC<FCTypes> = ({ products }) => {
   const { loading: listedLoading, listedProduct } = useAppSelector(
     (state) => state.list
   );
-  const { items } = useAppSelector(
+  const { cartItems } = useAppSelector(
     (state) => state.cart
   );
 
@@ -82,7 +82,7 @@ const ProductsList: FC<FCTypes> = ({ products }) => {
   };
 
   // console.log("products", products);
-  console.log("items", items);
+  // console.log("cartItems", cartItems);
 
   if (!!!products?.length) return <Loader />;
   return (
@@ -155,7 +155,7 @@ const ProductsList: FC<FCTypes> = ({ products }) => {
                   <div className="w-5/6">
                     <div className="flex flex-col sm:flex-row">
                       <Link
-                        href={`/product-details/${product.id}`}
+                        href={`/products/${product.id}`}
                         className="font-JosefinSans font-bold text-xl text-[#111C85] mr-6"
                       >
                         {product.title}
@@ -195,7 +195,7 @@ const ProductsList: FC<FCTypes> = ({ products }) => {
                           fontSize={20}
                         />
                       )} */}
-                      <Link href={`/product-details/${product.id}`}>
+                      <Link href={`/products/${product.id}`}>
                         <SlMagnifierAdd
                           className="text-[#535399]"
                           fontSize={20}

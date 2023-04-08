@@ -20,4 +20,9 @@ export type TShopOffer = {
   classes: string
 }
 
+export type TProductDetailsStars = {
+  star: number,
+  count: number
+}
+
 export type TProductListSort = "regular" | "highest" | "lowest";
