@@ -12,7 +12,7 @@ const Footer: FC = (): ReactElement => {
             <div className="w-full">
               <ul>
                 <li className="mb-5 font-JosefinSans text-4xl text-black font-bold ">
-                  Hekto
+                  Commercion
                 </li>
                 <li className="relative mb-5">
                   <input
@@ -29,18 +29,18 @@ const Footer: FC = (): ReactElement => {
                     Contact Info
                   </p>
                   <a
-                    href="mailto:MiladSadeghi2323@gmail.com"
+                    href="mailto:e-commercion@info.com"
                     className="text-[#8A8FB9] block mb-1"
                   >
-                    MiladSadeghi2323@gmail.com
+                    e-commercion@info.com
                   </a>
                   <a
-                    href="https://t.me/wsxxsw"
+                    href="https://t.me/eCommercion"
                     rel="noreferrer"
                     target="_blank"
                     className="text-base text-[#8A8FB9]"
                   >
-                    @wsxxsw
+                    @eCommercion
                   </a>
                 </li>
               </ul>
@@ -55,10 +55,10 @@ const Footer: FC = (): ReactElement => {
                     <Link href="/faq">Faq</Link>
                   </li>
                   <li className="footer-li">
-                    <Link href="/contact-us">Contact Us</Link>
+                    <Link href="/contacts">Contact Us</Link>
                   </li>
                   <li className="footer-li">
-                    <Link href="/about-us">About Us</Link>
+                    <Link href="/about">About Us</Link>
                   </li>
                 </ul>
               </div>
@@ -93,7 +93,7 @@ const Footer: FC = (): ReactElement => {
       <div className="bg-[#E7E4F8] py-2">
         <div className="container mx-auto flex justify-between flex-wrap">
           <p className="font-bold font-Lato text-[#9DA0AE]">
-            ©MiladSadeghi - All Rights Reserved
+            ©Commercion - All Rights Reserved
           </p>
           <div className="flex items-center">
             <AiFillInstagram className="bg-navy-blue p-1 text-white text-2xl rounded-full mr-4" />

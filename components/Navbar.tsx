@@ -22,18 +22,18 @@ const Navbar: FC = (): ReactElement => {
               <p className="flex items-center">
                 <HiOutlineMail className="font-bold" />
                 <span className="ml-2 font-semibold">
-                  MiladSadeghi2323@gmail.com
+                  e-commercion@info.com
                 </span>
               </p>
               <p className="flex items-center ml-5">
                 <FaTelegram className="font-bold" />
                 <a
-                  href="https://t.me/wsxxsw"
+                  href="https://t.me/eCommercion"
                   rel="noreferrer"
                   target="_blank"
                   className="ml-2 font-semibold text-base"
                 >
-                  @wsxxsw
+                  @eCommercion
                 </a>
               </p>
             </div>
@@ -70,8 +70,8 @@ const Navbar: FC = (): ReactElement => {
       <div>
         <div className="container mx-auto">
           <div className="items-center py-[13.5px] grid grid-cols-12">
-            <h1 className="font-JosefinSans text-[#0D0E43] font-bold text-[34px] sm:col-span-4 md:col-span-3 col-span-12 text-center sm:text-left">
-              Hekto
+            <h1 className="font-JosefinSans text-[#0D0E43] font-bold text-[34px] sm:col-span-4 md:col-span-3 col-span-12 text-center sm:text-left cursor-pointer" onClick={() => router.push('/')}>
+              Commercion
             </h1>
             <ul className="flex font-Lato text-[#0D0E43] items-center sm:col-span-8 md:col-span-6  sm:justify-self-end md:justify-self-start flex-wrap col-span-12 mb-4 sm:mb-0 justify-center sm:justify-start">
               <li className="mr-9">
