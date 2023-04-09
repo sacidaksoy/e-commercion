@@ -10,7 +10,7 @@ import { FCTypes, TProductListSort } from "@/types/types.public";
 import { GetServerSideProps } from "next";
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
-import { listActions } from "@/store/slices";
+import { listActions, wishListActions } from "@/store/slices";
 import Link from "next/link";
 import Image from "next/image";
 import { cartActions } from "@/store/slices/cart";
@@ -46,8 +46,8 @@ const ProductsList: FC<FCTypes> = ({ products }) => {
   const { loading: listedLoading, listedProduct } = useAppSelector(
     (state) => state.list
   );
-  const { cartItems } = useAppSelector(
-    (state) => state.cart
+  const { wishlistProducts } = useAppSelector(
+    (state) => state.wishlist
   );
 
   useEffect(() => {
@@ -168,33 +168,29 @@ const ProductsList: FC<FCTypes> = ({ products }) => {
                         ${product.price}
                       </p>
                     </div>
-                    <div className="flex mt-2">
+                    <div className="flex mt-2 gap-4">
                       <HiOutlineShoppingCart
                         onClick={() =>
                           dispatch(cartActions.addToCart(product))
                         }
-                        className="mr-7 text-[#535399] cursor-pointer"
+                        className="text-[#535399] cursor-pointer"
                         fontSize={20}
                       />
-                      {/* {wishlist.includes(product.id) ? (
+                      {wishlistProducts?.filter((item) => item.id === product.id).length > 0 ? (
                         <FaHeart
                           onClick={() =>
-                            dispatch(
-                              removeFromWishlist({ productID: product.id })
-                            )
+                            dispatch(wishListActions.removeFromWishList(product))
                           }
-                          className="mr-7 text-[#535399] cursor-pointer"
+                          className="text-[#535399] cursor-pointer"
                           fontSize={20}
                         />
                       ) : (
                         <FiHeart
-                          onClick={() =>
-                            dispatch(addToWishlist({ productID: product.id }))
-                          }
-                          className="mr-7 text-[#535399] cursor-pointer"
+                          onClick={() => dispatch(wishListActions.addToWishList(product))}
+                          className="text-[#535399] cursor-pointer"
                           fontSize={20}
                         />
-                      )} */}
+                      )}
                       <Link href={`/products/${product.id}`}>
                         <SlMagnifierAdd
                           className="text-[#535399]"
