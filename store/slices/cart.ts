@@ -29,14 +29,26 @@ const cartSlice = createSlice({
       const existingItemIndex = state.cartItems.findIndex((item) => item.id === id);
       if (existingItemIndex >= 0) {
         const existingItem = state.cartItems[existingItemIndex];
-        if (existingItem.quantity === 1) {
+        if (existingItem.quantity > 0) {
           state.cartItems.splice(existingItemIndex, 1);
-        } else {
-          existingItem.quantity--;
+          toast.error('Removed from cart!');
         }
       }
-      toast.error('Removed from cart!')
     },
+    clearCart: (state) => {
+      state.cartItems = [];
+      toast.info('Cart cleared!');
+    },
+    changeQuantity: (state, action: PayloadAction<{ id: number, quantity: number }>) => {
+      const { id, quantity } = action.payload;
+      const existingItemIndex = state.cartItems.findIndex((item) => item.id === id);
+      if (existingItemIndex >= 0) {
+        if (state.cartItems[existingItemIndex].quantity + quantity >= 1) {
+          state.cartItems[existingItemIndex].quantity += quantity;
+          toast.info('Quantity updated!');
+        }
+      }
+    }
   },
 });
 
