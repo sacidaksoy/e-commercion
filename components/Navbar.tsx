@@ -8,10 +8,14 @@ import { BounceLoader } from "react-spinners";
 import Link from "next/link";
 import { useRouter } from 'next/router';
 // import { useAppSelector } from "@/redux/hook";
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 const Navbar: FC = (): ReactElement => {
   // const { isLoggedIn, guest, userName } = useAppSelector((state) => state.user);
   const router = useRouter();
+  const { user, error, isLoading } = useUser();
+
+  // console.log("user", user);
 
   return (
     <nav>
@@ -39,18 +43,18 @@ const Navbar: FC = (): ReactElement => {
             </div>
             <div className="flex items-center mt-4 sm:mt-0">
               <div>
-                {/* {!isLoggedIn ? (
-                  <BounceLoader size={23} color="#FB2E86" />
-                ) : guest ? (
-                  <Link className="flex items-center" href={"signin"}>
+                {!user ? (
+                  <Link className="flex items-center" href={'/api/auth/login'}>
                     <p>Login</p>
                     <span>
                       <BsFillPersonFill className="ml-2" />
                     </span>
                   </Link>
                 ) : (
-                  <p>{userName}</p>
-                )} */}
+                  <Link href={'/api/auth/logout'}>
+                    <p>{user?.name || user?.nickname}</p>
+                  </Link>
+                )}
               </div>
               <div className="flex items-center ml-3">
                 <Link href={"/wishlist"} className="flex items-center">

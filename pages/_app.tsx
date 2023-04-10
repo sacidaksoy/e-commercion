@@ -9,16 +9,19 @@ import { persistor } from '../store'
 import { PersistGate } from 'redux-persist/integration/react'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <Navbar />
-        <Component {...pageProps} />
-        <Footer />
-        <ToastContainer position="top-right" />
-      </PersistGate>
-    </Provider>
+    <UserProvider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Navbar />
+          <Component {...pageProps} />
+          <Footer />
+          <ToastContainer position="top-right" />
+        </PersistGate>
+      </Provider>
+    </UserProvider>
   )
 }
