@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from "react";
 import { HiMinusSm, HiPlusSm } from "react-icons/hi";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { IoIosCheckmarkCircle } from "react-icons/io";
-import { ECartSituation } from "../../enums/public.enum";
+import { ECartSituation } from "../enums/public.enum";
 import { motion } from "framer-motion";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { Products } from "@/types/products";
@@ -12,26 +12,21 @@ import Head from "next/head";
 import { totalCartPrice } from "@/helper/utility-functions";
 import Loader from "@/helper/Loader";
 import Image from "next/image";
-import EmptyCart from "../../images/cart.jpg";
+import EmptyCart from "../images/cart.jpg";
 import { useRouter } from "next/router";
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 const Cart: FC = (): ReactElement => {
   const { cartItems: cartProducts } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const { user, error, isLoading } = useUser();
 
   const clearCart = async (e: any) => {
     e.currentTarget.disabled = true;
     if (window.confirm("Are you sure?")) {
       dispatch(cartActions.clearCart());
     }
-  };
-
-  const productTotalPrice = (id: number, price: number): number => {
-    const cartItem: any = cartProducts.find((item) => item.id === id);
-    if (cartItem) {
-      return Number((cartItem.quantity * price).toFixed(2));
-    } else return price;
   };
 
   if (cartProducts === undefined) return <Loader />;
@@ -160,7 +155,7 @@ const Cart: FC = (): ReactElement => {
                           className={`${product.price ? "text-navy-blue" : "text-pink-cc"
                             } font-JosefinSans`}
                         >
-                          ${productTotalPrice(product.id, product.price)}
+                          ${(product.quantity * product.price).toFixed(2)}
                         </h2>
                       </td>
                     </tr>
@@ -195,13 +190,22 @@ const Cart: FC = (): ReactElement => {
                   <IoIosCheckmarkCircle className="text-green-600 mr-2" />
                   Shipping & taxes calculated at checkout
                 </p>
-                <button
-                  className="bg-green-500 text-white font-bold font-Lato text-sm mt-6 w-full rounded-sm py-3 disabled:opacity-75"
-                  // disabled={true}
-                  onClick={() => router.push('/signup')}
-                >
-                  {"You should sign in first."}
-                </button>
+                {!user ? (
+                  <button
+                    className="bg-green-500 text-white font-bold font-Lato text-sm mt-6 w-full rounded-sm py-3 disabled:opacity-75"
+                    onClick={() => router.push('/api/auth/login?returnTo=/cart')}
+                  >
+                    {"You should sign in first."}
+                  </button>
+                ) : (
+                  <button
+                    className="bg-green-500 text-white font-bold font-Lato text-sm mt-6 w-full rounded-sm py-3 disabled:opacity-75"
+                    onClick={() => router.push('/checkout')}
+                  >
+                    {"Proceed To Checkout"}
+                  </button>
+                )}
+
               </div>
             </div>
           </div>
