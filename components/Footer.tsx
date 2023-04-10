@@ -78,12 +78,6 @@ const Footer: FC = (): ReactElement => {
                   <li className="footer-li">
                     <Link href="/cart">Cart</Link>
                   </li>
-                  <li className="footer-li">
-                    <Link href="/signin">Sign In</Link>
-                  </li>
-                  <li className="footer-li">
-                    <Link href="/signup">Sign Up</Link>
-                  </li>
                 </ul>
               </div>
             </div>
