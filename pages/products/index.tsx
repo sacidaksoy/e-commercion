@@ -1,11 +1,9 @@
-import React, { FC, useEffect, useRef, useState, Fragment } from "react";
+import React, { FC, useState, Fragment } from "react";
 import Loader from "../../helper/Loader";
 import { motion } from "framer-motion";
 import { Products } from "@/types/products";
 import { FCTypes, TProductListSort } from "@/types/types.public";
 import { GetServerSideProps } from "next";
-import { useAppDispatch, useAppSelector } from "@/store/hook";
-import { listActions } from "@/store/slices";
 import ProductCard from "@/components/ProductCard";
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
@@ -59,44 +57,7 @@ const ProductsList: FC<FCTypes> = ({ products }) => {
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [filterValues, setFilterValues] = useState(filters);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const [searchText, setSearchText] = useState<string>("");
   const [sort, setSort] = useState<TProductListSort>("Regular");
-
-  const isMount1 = useRef(false);
-  const isMount2 = useRef(false);
-
-  const dispatch = useAppDispatch();
-  const { loading: listedLoading, listedProduct } = useAppSelector(
-    (state) => state.list
-  );
-
-
-  useEffect(() => {
-    if (isMount1.current) {
-      const getData = setTimeout(() => {
-        dispatch(listActions.regular({ products, search: searchText }));
-        setSort("Regular");
-      }, 450);
-
-      return () => clearTimeout(getData);
-    } else {
-      isMount1.current = true;
-    }
-  }, [searchText]);
-
-  // useEffect(() => {
-  //   if (isMount2.current) {
-  //     if (sort === "Lowest") {
-  //       dispatch(listActions.lowest(listedProduct));
-  //     } else if (sort === "Highest") {
-  //       dispatch(listActions.highest(listedProduct));
-  //     } else if (sort === "Regular") {
-  //       dispatch(listActions.regular({ products, search: "" }));
-  //     }
-  //   } else {
-  //     isMount2.current = true;
-  //   }
-  // }, [sort]);
 
   const sortProducts = (products: Products[], selectOption: TProductListSort): Products[] => {
     switch (selectOption) {
@@ -392,14 +353,14 @@ const ProductsList: FC<FCTypes> = ({ products }) => {
               <div className="lg:col-span-3">
                 <div className="mx-auto max-w-2xl lg:max-w-7xl">
                   <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:gap-x-8">
-                    {listedLoading ? (
+                    {!filteredProducts ? (
                       <Loader />
-                    ) : !listedLoading && listedProduct?.length === 0 ? (
+                    ) : !filteredProducts && (filteredProducts as Products[])?.length === 0 ? (
                       <p className="text-center text-2xl font-Lato text-navy-blue mb-10 font-bold">
                         Nothing Found
                       </p>
                     ) : (
-                      filteredProducts?.map((product: Products) => (
+                      (filteredProducts as Products[])?.map((product: Products) => (
                         <ProductCard data={product} />
                       ))
                     )}
