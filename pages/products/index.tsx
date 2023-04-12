@@ -4,13 +4,13 @@ import { motion } from "framer-motion";
 import { Products } from "@/types/products";
 import { FCTypes, TProductListSort } from "@/types/types.public";
 import { GetServerSideProps } from "next";
-import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { listActions } from "@/store/slices";
 import ProductCard from "@/components/ProductCard";
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
+import { fetchProductData } from "../api";
 
 const sortOptions = [
   { name: 'Regular', href: '#', current: true },
@@ -46,19 +46,13 @@ export type Props = {
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  try {
-    // Send HTTP GET request to fetch data from an API
-    const response = await axios.get<Products[]>('https://fakestoreapi.com/products');
+  const products = await fetchProductData();
 
-    // Extract the data from the response
-    const products = response.data;
-
-    // Return the data as props
-    return { props: { products } };
-  } catch (error) {
-    console.error(error);
-    return { props: { products: [] } };
-  }
+  return {
+    props: {
+      products,
+    },
+  };
 };
 
 const ProductsList: FC<FCTypes> = ({ products }) => {

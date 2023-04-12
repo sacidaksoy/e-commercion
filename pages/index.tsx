@@ -1,8 +1,7 @@
 import Head from 'next/head'
 import Hero from '@/components/Hero'
 import FeaturedProducts from '@/components/FeaturedProducts/FeaturedProducts'
-import axios from 'axios'
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps} from 'next'
 import { Products } from '@/types/products'
 import LatestProducts from '@/components/LatestProducts/LatestProducts'
 import ShopOffers from '@/components/ShopOffers'
@@ -13,29 +12,24 @@ import TopCategories from '@/components/TopCategories/TopCategories'
 import UpdateBanner from '@/components/UpdateBanner'
 import Logos from '@/components/Logos'
 import { motion } from "framer-motion";
+import { fetchProductData } from './api'
 
 export type Props = {
   data: Products[];
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  try {
-    // Send HTTP GET request to fetch data from an API
-    const response = await axios.get<Products[]>('https://fakestoreapi.com/products');
+  const data = await fetchProductData();
 
-    // Extract the data from the response
-    const data = response.data;
-
-    // Return the data as props
-    return { props: { data } };
-  } catch (error) {
-    console.error(error);
-    return { props: { data: [] } };
-  }
+  return {
+    props: {
+      data,
+    },
+  };
 };
 
 export default function Home({ data }: Props) {
-  // console.log("data", data);
+  console.log("data", data);
   return (
     <motion.div
       initial={{ opacity: 0 }}

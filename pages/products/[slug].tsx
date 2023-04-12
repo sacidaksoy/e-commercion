@@ -3,33 +3,27 @@ import Head from "next/head";
 import Image from "next/image";
 import { AiFillInstagram, AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { GrFacebookOption, GrTwitter } from "react-icons/gr";
-import axios from "axios";
 import { GetServerSideProps } from "next";
 import { Products } from "@/types/products";
 import { TProductDetailsStars } from "@/types/types.public";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { cartActions } from "@/store/slices";
 import { HiOutlineShoppingCart } from "react-icons/hi";
+import { fetchProductDetail } from "../api";
 
 type ProductPageProps = {
   productDetails: Products;
 };
 
 export const getServerSideProps: GetServerSideProps<ProductPageProps> = async ({ params }) => {
-  try {
-    const slug = params?.slug || '';
-    // Send HTTP GET request to fetch data from an API
-    const response = await axios.get(`https://fakestoreapi.com/products/${slug}`);
+  const slug = params?.slug as string;
+  const productDetails = await fetchProductDetail(slug);
 
-    // Extract the data from the response
-    const productDetails = response.data;
-
-    // Return the data as props
-    return { props: { productDetails } };
-  } catch (error) {
-    console.error(error);
-    return { props: { productDetails: [] } };
-  }
+  return {
+    props: {
+      productDetails,
+    },
+  };
 };
 
 const Stars: FC<any> = ({ numb }: { numb: any }): React.ReactElement => {
@@ -55,8 +49,8 @@ const Stars: FC<any> = ({ numb }: { numb: any }): React.ReactElement => {
 const ProductDetails: FC<ProductPageProps> = ({ productDetails }): ReactElement => {
   const dispatch = useAppDispatch();
   const [stars, setStars] = useState<TProductDetailsStars>({
-    star: productDetails.rating.rate || 0,
-    count: productDetails.rating.count || 0,
+    star: productDetails?.rating?.rate || 0,
+    count: productDetails?.rating?.count || 0,
   });
 
   return (
