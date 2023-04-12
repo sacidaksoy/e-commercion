@@ -1,5 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# E-commercion App
+
+This project was made for all customers who want to sell their e-commerce products and open up to the global market with SEO based performance app.
+
+
+## Screenshots
+
+![Uygulama Ekran Görüntüsü](https://i.hizliresim.com/4xo9ibd.png)
+![Uygulama Ekran Görüntüsü](https://i.hizliresim.com/34gnxcr.png)
+![Uygulama Ekran Görüntüsü](https://i.hizliresim.com/498j4ka.png)
+
+  
+## TechStack
+
+- Next.js | Typescript | TailwindCSS | Eslint
+
+-- Authentication handled with Auth0
+
+-- SSR Based Application, centralized requests with axios
+
+-- @headlessui/react Category based filtering section
+
+-- @reduxjs/toolkit with persist store Data Layer
+
+-- @framer-motion page transition animations
+
+-- @swiper/react for Slide based components
+
+-- @react-toastify Toast notifications
+
+-- @formik-yup form handlers
+
+## Demo
+
+https://e-commercion-x9g3.vercel.app/
+  
+## Benefited resource generators
+
+- [@saberali](https://www.figma.com/community/file/967759864749832815) Figma Design
+- [@API](https://fakestoreapi.com/) fakestoreapi
+## Features
+
+- Listing of campaigns
+- Listing of opportunity products
+- People's access to products by categories
+- Customers can add the products they want to buy to their cart
+- Customers can create an account and create an order
+- About us page with information about the company
+- Contact Us page for customers and potential customers to contact
+  
+  [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 ## Getting Started
 
 First, run the development server:
@@ -11,28 +61,3 @@ yarn dev
 # or
 pnpm dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
