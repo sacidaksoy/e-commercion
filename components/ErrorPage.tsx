@@ -1,11 +1,14 @@
-import React, { FC, ReactElement } from "react";
 import NotFoundIMG from "../images/404.png";
 import Logos from "@/components/Logos";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
 
-const NotFound: FC = (): ReactElement => {
+interface Props {
+  statusCode?: number;
+}
+
+const ErrorPage = ({ statusCode }: Props) => {
   return (
     <div>
       <Head>
@@ -21,7 +24,7 @@ const NotFound: FC = (): ReactElement => {
       <div className="container mx-auto mt-28">
         <Image src={NotFoundIMG} alt="404" className="mx-auto" />
         <p className="text-center text-[#152970] font-bold text-2xl font-JosefinSans mt-10">
-          oops! The page you requested was not found!
+          oops! The page you requested was not found! {statusCode}
         </p>
         <div className="mt-20 flex items-center justify-center mb-20">
           <Link
@@ -37,4 +40,4 @@ const NotFound: FC = (): ReactElement => {
   );
 };
 
-export default NotFound;
+export default ErrorPage;
