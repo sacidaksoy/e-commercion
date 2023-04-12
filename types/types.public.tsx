@@ -25,4 +25,4 @@ export type TProductDetailsStars = {
   count: number
 }
 
-export type TProductListSort = "regular" | "highest" | "lowest";
+export type TProductListSort = "Regular" | "Highest" | "Lowest";
