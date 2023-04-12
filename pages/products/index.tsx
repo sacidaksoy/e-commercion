@@ -1,4 +1,4 @@
-import React, { FC, useState, Fragment } from "react";
+import React, { FC, useState, Fragment, useRef, useEffect } from "react";
 import Loader from "../../helper/Loader";
 import { motion } from "framer-motion";
 import { Products } from "@/types/products";
@@ -57,7 +57,9 @@ const ProductsList: FC<FCTypes> = ({ products }) => {
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [filterValues, setFilterValues] = useState(filters);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+  const [searchText, setSearchText] = useState<string>('');
   const [sort, setSort] = useState<TProductListSort>("Regular");
+  const isMount1 = useRef(false);
 
   const sortProducts = (products: Products[], selectOption: TProductListSort): Products[] => {
     switch (selectOption) {
@@ -89,6 +91,7 @@ const ProductsList: FC<FCTypes> = ({ products }) => {
           return option;
         }
       });
+      setSearchText('');
       return { ...filter, options: updatedOptions };
     });
     setFilterValues(updatedFilters);
@@ -102,6 +105,24 @@ const ProductsList: FC<FCTypes> = ({ products }) => {
       setFilteredProducts(filtered);
     }
   }
+
+  const handleSearch = (e: any) => {
+    const { value } = e.target;
+    setSearchText(value);
+  }
+
+  useEffect(() => {
+    if (isMount1.current) {
+      const getData = setTimeout(() => {
+        const sortedProducts = filteredProducts.filter((product) => product.title.toLowerCase().includes(searchText.toLowerCase()))
+        setFilteredProducts([...sortedProducts]);
+      }, 450);
+
+      return () => clearTimeout(getData);
+    } else {
+      isMount1.current = true;
+    }
+  }, [searchText]);
 
   if (!!!products?.length) return <Loader />;
   return (
@@ -223,12 +244,19 @@ const ProductsList: FC<FCTypes> = ({ products }) => {
         </Transition.Root>
 
         <main className="container mx-auto">
-          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
+          <div className="flex flex-col gap-5 sm:flex-row items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">New Arrivals</h1>
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
-                <div>
+                <div className="ml-7">
+                  <input
+                    className="px-4 py-2.5 outline-none border-2 border-[#E7E6EF] h-[35px] mr-7"
+                    type="search"
+                    value={searchText}
+                    onChange={handleSearch}
+                    placeholder="Search..."
+                  />
                   <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                     Sort
                     <ChevronDownIcon
