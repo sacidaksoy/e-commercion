@@ -9,6 +9,7 @@ import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 import { fetchProductData } from "../api";
+import useDebounce from "@/helper/useDebounce";
 
 const sortOptions = [
   { name: 'Regular', href: '#', current: true },
@@ -55,11 +56,13 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
 
 const ProductsList: FC<FCTypes> = ({ products }) => {
   const [filteredProducts, setFilteredProducts] = useState(products);
+  const [filterPrevProducts, setFilterPrevProducts] = useState<Products[]>([]);
   const [filterValues, setFilterValues] = useState(filters);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [searchText, setSearchText] = useState<string>('');
   const [sort, setSort] = useState<TProductListSort>("Regular");
-  const isMount1 = useRef(false);
+
+  const debouncedSearchTerm = useDebounce(searchText, 500);
 
   const sortProducts = (products: Products[], selectOption: TProductListSort): Products[] => {
     switch (selectOption) {
@@ -103,6 +106,7 @@ const ProductsList: FC<FCTypes> = ({ products }) => {
     } else {
       const filtered = products.filter((product) => selectedCategories.includes(product.category));
       setFilteredProducts(filtered);
+      setFilterPrevProducts(filtered);
     }
   }
 
@@ -112,17 +116,20 @@ const ProductsList: FC<FCTypes> = ({ products }) => {
   }
 
   useEffect(() => {
-    if (isMount1.current) {
-      const getData = setTimeout(() => {
-        const sortedProducts = filteredProducts.filter((product) => product.title.toLowerCase().includes(searchText.toLowerCase()))
-        setFilteredProducts([...sortedProducts]);
-      }, 450);
-
-      return () => clearTimeout(getData);
+    const allOptionsUnchecked = filterValues.every((filter) => filter.options.every((option) => !option.checked));
+    if (allOptionsUnchecked) {
+      const filtered = products.filter(product =>
+        product.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+      );
+      setFilteredProducts(filtered);
     } else {
-      isMount1.current = true;
+      const filtered = filterPrevProducts.filter(product =>
+        product.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+      );
+      setFilteredProducts(filtered);
     }
-  }, [searchText]);
+
+  }, [debouncedSearchTerm]);
 
   if (!!!products?.length) return <Loader />;
   return (
@@ -388,8 +395,8 @@ const ProductsList: FC<FCTypes> = ({ products }) => {
                         Nothing Found
                       </p>
                     ) : (
-                      (filteredProducts as Products[])?.map((product: Products) => (
-                        <ProductCard data={product} />
+                      (filteredProducts as Products[])?.map((product: Products, index: number) => (
+                        <ProductCard data={product} key={index} />
                       ))
                     )}
                   </div>
