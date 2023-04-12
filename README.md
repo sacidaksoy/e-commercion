@@ -55,6 +55,14 @@ https://e-commercion-x9g3.vercel.app/
 First, run the development server:
 
 ```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+```bash
 npm run dev
 # or
 yarn dev
