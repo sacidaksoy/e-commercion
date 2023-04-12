@@ -9,6 +9,7 @@ import { Products } from "@/types/products";
 import Image from "next/image";
 import Link from "next/link";
 import { cartActions, wishListActions } from "@/store/slices";
+import Head from "next/head";
 
 const Wishlist = () => {
   const { wishlistProducts } = useAppSelector((state) => state.wishlist)
@@ -28,6 +29,9 @@ const Wishlist = () => {
         exit={{ opacity: 0, transition: { duration: 0.2 } }}
         className=" container mx-auto flex flex-col items-center justify-center py-20"
       >
+        <Head>
+          <title>E-commercion - Wishlist Empty</title>
+        </Head>
         <Image
           className="md:w-1/3 sm:w-full"
           src={EmptyWishlist}
@@ -47,6 +51,9 @@ const Wishlist = () => {
     );
   return (
     <div>
+      <Head>
+        <title>E-commercion - Wishlist</title>
+      </Head>
       <div className="bg-[#F6F5FF] py-16">
         <div className="container mx-auto">
           <h1 className="font-JosefinSans font-bold text-3xl text-[#101750]">

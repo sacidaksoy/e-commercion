@@ -10,6 +10,7 @@ import { cartActions } from "@/store/slices";
 import { Products } from "@/types/products";
 import Image from "next/image";
 import { totalCartPrice } from "@/helper/utility-functions";
+import Head from "next/head";
 
 const Checkout: FC = (): React.ReactElement => {
   const { cartItems: cartProducts } = useAppSelector((state) => state.cart);
@@ -44,6 +45,9 @@ const Checkout: FC = (): React.ReactElement => {
       }}
       exit={{ opacity: 0, transition: { duration: 0.2 } }}
     >
+      <Head>
+        <title>E-commercion - Checkout</title>
+      </Head>
       <div className="bg-[#F6F5FF] py-16">
         <div className="container mx-auto flex flex-col">
           <h1 className="font-JosefinSans font-bold text-3xl text-[#101750]">

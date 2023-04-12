@@ -10,6 +10,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 import { fetchProductData } from "../api";
 import useDebounce from "@/helper/useDebounce";
+import Head from "next/head";
 
 const sortOptions = [
   { name: 'Regular', href: '#', current: true },
@@ -141,6 +142,9 @@ const ProductsList: FC<FCTypes> = ({ products }) => {
       }}
       exit={{ opacity: 0, transition: { duration: 0.2 } }}
     >
+      <Head>
+        <title>E-commercion - Products</title>
+      </Head>
       <div className="bg-[#F6F5FF] py-16">
         <div className="container mx-auto">
           <h1 className="font-JosefinSans font-bold text-3xl text-[#101750]">

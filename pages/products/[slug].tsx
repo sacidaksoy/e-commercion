@@ -56,7 +56,7 @@ const ProductDetails: FC<ProductPageProps> = ({ productDetails }): ReactElement 
   return (
     <div>
       <Head>
-        <title>E-commercion - Page Not Found</title>
+        <title>E-commercion - Product Details {productDetails.title}</title>
       </Head>
       <div className="bg-[#F6F5FF] py-16">
         <div className="container mx-auto">

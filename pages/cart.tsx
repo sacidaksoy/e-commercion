@@ -61,7 +61,7 @@ const Cart: FC = (): ReactElement => {
   return (
     <motion.div>
       <Head>
-        <title>E-commercion - Cart Page</title>
+        <title>E-commercion - Cart</title>
       </Head>
       <div className="bg-[#F6F5FF] py-16">
         <div className="container mx-auto flex">
