@@ -96,9 +96,11 @@ const Cart: FC = (): ReactElement => {
                     <tr key={product.id} className="border-b border-gray-300">
                       <td className="py-4 px-6 font-medium text-gray-900 flex w-full">
                         <div className="relative w-[87px]">
-                          <img
+                          <Image
                             src={product.image}
                             alt={product.title}
+                            width={87}
+                            height={87}
                           />
                           <div
                             className="absolute -top-[7px] -right-[7px] cursor-pointer"
