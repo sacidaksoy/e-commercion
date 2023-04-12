@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import cart from "./cart";
-import wishlist from "./wishList";
+import wishlist from "./wishlistSlice";
 import { cartActions } from "./cart";
-import { wishListActions } from "./wishList";
+import { wishListActions } from "./wishlistSlice";
 
 const rootReducer = combineReducers({ cart, wishlist });
 
